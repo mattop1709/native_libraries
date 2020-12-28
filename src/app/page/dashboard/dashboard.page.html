@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="onLogout()" expand="full">Logout</ion-button>
+  <div>
+    <h1>My Todo</h1>
+    <ul>
+      <li *ngFor="let todo of todos">{{todo}}</li>
+    </ul>
+  </div>
+</ion-content>

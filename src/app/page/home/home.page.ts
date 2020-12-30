@@ -12,7 +12,6 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.authService.userInfo.subscribe(response => {
-      console.log(response);
       if (response) {
         this.userName = response.username;
       }

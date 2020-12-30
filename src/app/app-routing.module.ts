@@ -18,6 +18,7 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () =>
       import('./page/login/login.module').then(m => m.LoginPageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'dashboard',
@@ -26,6 +27,10 @@ const routes: Routes = [
         m => m.DashboardPageModule
       ),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'upload',
+    loadChildren: () => import('./page/upload/upload.module').then( m => m.UploadPageModule)
   },
 ];
 

@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Upload Image</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button expand="full" [routerLink]="['..']">Return</ion-button>
+
+ <!-- image selector -->
+  <ion-card *ngIf="!isUploading && !isUploaded">
+    <ion-card-header>
+      <ion-card-title>Pick the image from your gallery</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div>
+        <input type="file" class="upload" (change)="onSelect($event.target.files)"/>
+      </div>
+    </ion-card-content>
+  </ion-card>
+   <!-- image selector end -->
+
+
+<!-- upload image button -->
+  <ion-card *ngIf="!isUploading && !isUploaded">
+    <ion-button 
+    [disabled]="(selectedFile === undefined)"
+     color="success" 
+     expand="full" 
+     (click)="onCheckType()"
+     >
+      Upload
+     </ion-button>
+  </ion-card>
+<!-- upload image button end -->
+
+<!-- uploading image -->
+  <ion-card *ngIf="isUploading && !isUploaded">
+    <ion-card-content>
+      <div class="ion-text-center" *ngIf="percentage">
+        Progress: {{ percentage | number }}%
+        <ion-progress-bar class="ion-margin-top" value="{{ percentage/100 }}"></ion-progress-bar>
+      </div>
+      <div class="ion-text-center ion-padding-top" *ngIf="snapshot | async as snap">
+        File Size: {{ snap.totalBytes | fileSize }} Transfered:
+        {{ snap.totalBytes | fileSize }}
+      </div>
+    </ion-card-content>
+  </ion-card>
+<!-- uploading image end -->
+
+
+<!-- uploading image completed -->
+  <ion-card class="ion-text-center" *ngIf="!isUploading && isUploaded">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon color="success" name="checkmark-circle-outline"></ion-icon><br/>
+         <h4>Upload completed</h4>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngIf="imageURL">
+        <img [src]="imageURL" />
+        <a [href]="imageURL" target="_blank" rel="noopener">Download</a>
+      </div>
+      File Size: {{ imageSize | fileSize }}
+      <ion-button 
+       expand="full" 
+       color="success" 
+       (click)="isUploading = isUploaded = false">
+       Done
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+<!-- uploading image completed end -->
+
+
+  <h4 class="ion-text-center">Uploaded Tutorial Images</h4>
+
+  <!-- image list-->
+  <div>
+    <ion-item lines="none" *ngFor="let item of images">
+      <img slot="start" class="ion-padding" [src]="item.filepath" />
+      <ion-label>
+        <p>{{ item.name }}</p>
+        <a [href]="item.filepath" target="_blank" rel="noopener">Download</a>
+      </ion-label>
+    </ion-item>
+  </div>
+   <!-- image list-->
+
+</ion-content>

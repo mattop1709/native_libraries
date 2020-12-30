@@ -6,7 +6,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
     <h1>Welcome {{userName}}!</h1>
     <ion-button expand="full" [routerLink]="['/dashboard']">Dashboard</ion-button>
+    <ion-button expand="full" color="dark" [routerLink]="['/upload']">Upload Image</ion-button>
 </ion-content>

@@ -1,0 +1,16 @@
+ion-item {
+  --background: rgba(255, 255, 255, 0.1);
+  margin: 8px 16px 8px 16px;
+  --border-radius: 8px;
+  img {
+    height: 70px;
+    width: 100px;
+  }
+  a {
+    font-size: 12px;
+  }
+}
+
+ion-icon {
+  zoom: 2;
+}

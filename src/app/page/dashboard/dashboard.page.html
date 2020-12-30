@@ -4,12 +4,21 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <ion-button (click)="onLogout()" expand="full">Logout</ion-button>
+  <ion-button [routerLink]="['..']" expand="full" color="tertiary">Return</ion-button>
   <div>
     <h1>My Todo</h1>
     <ul>
       <li *ngFor="let todo of todos">{{todo}}</li>
     </ul>
   </div>
+
+  <div>
+      <h1>This is from Firebase</h1>
+      <ul>
+        <li *ngFor="let item of items">{{item.title}}</li>
+      </ul>
+  </div>
+  <p *ngIf="isLoading">Loading...</p>
 </ion-content>

@@ -16,6 +16,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +35,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     StatusBar,
     SplashScreen,
     AuthService,
+    OneSignal,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],

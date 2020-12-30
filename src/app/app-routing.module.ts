@@ -32,6 +32,10 @@ const routes: Routes = [
     path: 'upload',
     loadChildren: () => import('./page/upload/upload.module').then( m => m.UploadPageModule)
   },
+  {
+    path: 'inbox',
+    loadChildren: () => import('./page/inbox/inbox.module').then( m => m.InboxPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>inbox</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button [routerLink]="['..']" expand="full">Return</ion-button>
+ <div *ngFor="let message of messages">
+    <h6>{{message.title}}</h6>
+    <h6>{{message.message}}</h6>
+    <ion-button (click)="onDelete(message.id)">Delete</ion-button>
+ </div>
+
+ <h4 *ngIf="messages.length === 0">No message</h4>
+  
+</ion-content>

@@ -2,7 +2,7 @@ import { HttpBackend, HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 /** step 4 */
-import { Plugins, FilesystemDirectory, FileWriteResult } from '@capacitor/core';
+import { Plugins, FilesystemDirectory } from '@capacitor/core';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 /** step 6 */
@@ -19,17 +19,17 @@ const FILE_KEY = 'files';
 export class FilePage implements OnInit {
   /** step 2 */
   downloadUrl: string = '';
-  myFiles: any[] = [];
+  myFiles: string[] = [];
   downloadProgress: number = 0;
-
-  /** step 21 */
-  private customHttpClient: HttpClient;
 
   /** step 3 */
   path = 'https://file-examples-com.github.io/uploads/2017';
   pdfUrl = `${this.path}/10/file-example_PDF_1MB.pdf`;
   videoUrl = `${this.path}/04/file_example_MP4_640_3MG.mp4`;
   imageUrl = `${this.path}/10/file_example_PNG_1MB.png`;
+
+  /** step 21 */
+  private customHttpClient: HttpClient;
 
   /** step 5 */
   constructor(
@@ -96,40 +96,40 @@ export class FilePage implements OnInit {
           this.downloadProgress = 0;
 
           const name = url.substr(url.lastIndexOf('/') + 1);
-          const base64 = <string>await this.convertBlobToBase64(event.body);
-
-          const fileSaved: FileWriteResult = await Filesystem.writeFile({
+          const param = {
             path: name,
-            data: base64,
+            data: <string>await this.convertBlobToBase64(event.body),
             directory: FilesystemDirectory.Documents,
-          });
+          };
+          const savedFile = await Filesystem.writeFile({ ...param });
 
           /** step 14 please comment out interceptors */
-          // console.log(`data ${JSON.stringify(fileSaved)}`);
-          alert(`data ${JSON.stringify(fileSaved)}`);
+          // alert(`data ${JSON.stringify(savedFile)}`);
 
           /** step 16 */
-          const path = fileSaved.uri;
-          const fileType = this.onGetFileType(name);
-
-          /** step 17 */
-
-          this.fileOpener
-            .open(path, fileType)
-            .then(() => {})
-            .catch(error =>
-              alert(`file opener error ${JSON.stringify(error)}`)
-            );
+          this.onOpenFile(savedFile['uri'], this.onGetFileType(name));
 
           /** step 18 */
-          this.myFiles.unshift(path);
-
-          /** step 19 */
-          Storage.set({
-            key: FILE_KEY,
-            value: JSON.stringify(this.myFiles),
-          });
+          // this.onStoreFile(savedFile['uri']);
         }
       });
+  }
+
+  /** step 17 */
+  onOpenFile(file: string, path: string): void {
+    this.fileOpener
+      .open(file, path)
+      .then(() => {})
+      .catch(error => alert(`file opener error ${JSON.stringify(error)}`));
+  }
+
+  /** step 19 */
+  onStoreFile(path: string): void {
+    this.myFiles.unshift(path);
+    alert(`on store ${JSON.stringify(this.myFiles.length)}`);
+    Storage.set({
+      key: FILE_KEY,
+      value: JSON.stringify(this.myFiles),
+    });
   }
 }

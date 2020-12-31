@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>View File</ion-title>
+    <ion-title>View PDF</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,7 +12,7 @@
   <ion-button expand="full" color="danger" (click)="onDownload(pdfUrl)">PDF</ion-button>
   <ion-button expand="full" color="success" (click)="onDownload(videoUrl)">Video</ion-button>
   <ion-button expand="full" color="dark" (click)="onDownload(imageUrl)">Image</ion-button>
-
+  
     <!-- step 20 -->
     <ion-card *ngIf="downloadProgress">
       <ion-card-content>

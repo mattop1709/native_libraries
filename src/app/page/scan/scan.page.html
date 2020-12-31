@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Code Scanner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button expand="full" [routerLink]="['..']">Return</ion-button>
+
+  <ion-card>
+    <img src="https://www.qrcode-monkey.com/img/blog/qrcode-classic-blue.png" />
+    <ion-card-content>
+      <ion-text>This section shows the demo of how to scan a QRCode or Barcode to get the information</ion-text>
+
+      <ion-button color="success" expand="full" (click)="onScan()">Scan code</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-item *ngIf="data">
+    <ion-label position="stacked">Scan Format</ion-label>
+    <ion-input [value]="data.format" readonly></ion-input>
+  </ion-item>
+
+  <ion-item *ngIf="data">
+    <ion-label position="stacked">Scan Information</ion-label>
+    <ion-input [value]="data.text" readonly></ion-input>
+  </ion-item>
+
+
+</ion-content>

@@ -17,6 +17,9 @@ import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +39,9 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
     SplashScreen,
     AuthService,
     OneSignal,
+    BarcodeScanner,
+    InAppBrowser,
+    FileOpener,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],

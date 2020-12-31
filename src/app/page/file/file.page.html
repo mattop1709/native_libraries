@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>View File</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button expand="full" [routerLink]="['..']">Return</ion-button>
+
+  <!-- step 1 -->
+  <h4>these are the options</h4>
+  <ion-button expand="full" color="danger" (click)="onDownload(pdfUrl)">PDF</ion-button>
+  <ion-button expand="full" color="success" (click)="onDownload(videoUrl)">Video</ion-button>
+  <ion-button expand="full" color="dark" (click)="onDownload(imageUrl)">Image</ion-button>
+
+    <!-- step 20 -->
+    <ion-card *ngIf="downloadProgress">
+      <ion-card-content>
+        <div class="ion-text-center" *ngIf="downloadProgress">
+          Progress: {{ downloadProgress }}%
+          <ion-progress-bar class="ion-margin-top" value="{{ downloadProgress/100 }}"></ion-progress-bar>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+</ion-content>

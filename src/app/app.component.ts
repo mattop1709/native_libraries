@@ -30,10 +30,10 @@ export class AppComponent {
     this.platform.ready().then(() => {
       // this.statusBar.styleDefault();
       // this.splashScreen.hide();
-
-      this.platform.is('cordova')
-        ? this.initializePush()
-        : console.error('please use real device');
+      /** for push notification */
+      // this.platform.is('cordova')
+      //   ? this.initializePush()
+      //   : console.error('please use real device');
     });
   }
 

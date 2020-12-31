@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
@@ -30,11 +30,23 @@ const routes: Routes = [
   },
   {
     path: 'upload',
-    loadChildren: () => import('./page/upload/upload.module').then( m => m.UploadPageModule)
+    loadChildren: () =>
+      import('./page/upload/upload.module').then(m => m.UploadPageModule),
   },
   {
     path: 'inbox',
-    loadChildren: () => import('./page/inbox/inbox.module').then( m => m.InboxPageModule)
+    loadChildren: () =>
+      import('./page/inbox/inbox.module').then(m => m.InboxPageModule),
+  },
+  {
+    path: 'scan',
+    loadChildren: () =>
+      import('./page/scan/scan.module').then(m => m.ScanPageModule),
+  },
+  {
+    path: 'file',
+    loadChildren: () =>
+      import('./page/file/file.module').then(m => m.FilePageModule),
   },
 ];
 
